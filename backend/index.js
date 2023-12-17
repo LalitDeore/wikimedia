@@ -65,7 +65,7 @@ app.post("/admin-login", (req, res) => {
   }
 });
 
-const uri = process.env.MONGO_URL || "mongodb://localhost:27017";
+const uri = "mongodb://localhost:27017";
 const client = new MongoClient(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
