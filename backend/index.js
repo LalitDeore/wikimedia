@@ -12,13 +12,9 @@ const PORT = process.env.PORT || 3001;
 app.use(express.json());
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "https://wikimedia-raxl.vercel.app/",
   })
 );
-
-const corsOptions = {
-  origin: "http://localhost:3000",
-};
 
 // Secret key for JWT token
 const secretKey = crypto.randomBytes(32).toString("hex");
