@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
 const cors = require("cors");
-
+require("dotenv").config();
 const app = express();
 const PORT = process.env.PORT || 3001;
 
@@ -65,7 +65,7 @@ app.post("/admin-login", (req, res) => {
   }
 });
 
-const uri = "mongodb://localhost:27017";
+const uri = process.env.MONGO_URL || "mongodb://localhost:27017";
 const client = new MongoClient(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
