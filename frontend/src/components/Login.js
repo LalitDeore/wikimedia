@@ -50,7 +50,7 @@ const Login = () => {
 
     try {
       const response = await axios
-        .post("http://localhost:3001/admin-login", {
+        .post("https://wikimedia-1szr.onrender.com/admin-login", {
           email: data.email,
           password: data.password,
         })

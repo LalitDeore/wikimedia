@@ -32,7 +32,7 @@ const SearchResult = ({ query }) => {
     setPageId(item.pageid);
     setTitle(item.title);
     axios
-      .post("http://localhost:3001/visited-page", {
+      .post("https://wikimedia-1szr.onrender.com/visited-page", {
         pageId: pageId,
         title: title,
         url: url,

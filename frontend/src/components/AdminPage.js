@@ -12,10 +12,13 @@ const AdminPage = () => {
   const visitedPageChartRef = useRef(null);
   const searchKeywordChartRef = useRef(null);
 
+  //fetch data of all visited page with number of time it visited
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:3001/visited-page");
+        const response = await axios.get(
+          "https://wikimedia-1szr.onrender.com/visited-page"
+        );
         setVisitedPage(
           response.data.filter((item) => item.pageId && item.title && item.url)
         );
@@ -27,11 +30,12 @@ const AdminPage = () => {
     fetchData();
   }, []);
 
+  //fetch data of most search keyword
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3001/most-searched-keywords/asc"
+          "https://wikimedia-1szr.onrender.com/most-searched-keywords/asc"
         );
         setSearchKeyword(response.data.filter((item) => item.keyword));
       } catch (error) {
@@ -82,7 +86,6 @@ const AdminPage = () => {
       options: visitedPageChartOptions,
     });
 
-    // Save the new chart instance to the ref
     visitedPageChartRef.current = newVisitedPageChartInstance;
   }, [visitedPage]);
 

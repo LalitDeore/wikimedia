@@ -19,7 +19,7 @@ function App() {
         <div className="header">
           <LoginButton isLogin={isLogin} setIsLogin={setIsLogin} />
         </div>
-        <h1>Welcome to MediaWiki</h1>
+
         <div className="searchBar">
           <SearchBar
             isSearch={isSearch}
