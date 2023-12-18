@@ -4,18 +4,28 @@ const { MongoClient } = require("mongodb");
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
-const cors = require("cors");
 require("dotenv").config();
 const app = express();
-const PORT = process.env.PORT || 3001;
-
-app.use(express.json());
+const cors = require("cors");
 app.use(
   cors({
     origin: "*",
+    credentials: true,
+    optionsSuccessStatus: 200,
   })
 );
+const PORT = process.env.PORT || 3001;
 
+app.use(express.json());
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  res.header("Access-Control-Allow-Credentials", "true");
+  res.header("Access-Control-Allow-Origin", "*");
+
+  next();
+});
 // Secret key for JWT token
 const secretKey = crypto.randomBytes(32).toString("hex");
 
@@ -226,22 +236,6 @@ app.get("/most-searched-keywords/:order(asc|desc)", async (req, res) => {
     .toArray();
 
   res.json(result);
-});
-
-app.use((req, res, next) => {
-  res.header(
-    "Access-Control-Allow-Origin",
-    "https://wikimedia-raxl.vercel.app"
-  );
-  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-  res.header("Access-Control-Allow-Credentials", "true");
-  res.header(
-    "Access-Control-Allow-Origin",
-    "https://wikimedia-raxl.vercel.app"
-  );
-
-  next();
 });
 
 app.listen(PORT, () => {
